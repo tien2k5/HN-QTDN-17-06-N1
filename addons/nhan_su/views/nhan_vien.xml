@@ -1,78 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
+        <!-- ================= FORM ================= -->
+
         <record id="view_nhan_vien_form" model="ir.ui.view">
-            <field name="name">nhan_vien</field>
+            <field name="name">nhan_vien.form</field>
             <field name="model">nhan_vien</field>
             <field name="arch" type="xml">
+
                 <form>
+
                     <sheet>
-                        <div class="oe_read_only" style="font-size:25px">Nhân viên</div>
-                        <group col="4" string="Thông tin chung">
-                            <field name="ho_ten_dem"/>
-                            <field name="ten"/>
-                            <field name="ho_va_ten"/>
-                            <field name="ma_dinh_danh"/>
-                            <field name="ngay_sinh"/>
-                            <field name="tuoi"/>
-                            <field name="so_nguoi_bang_tuoi"/>
-                            <field name="que_quan"/>
-                            <field name="email"/>
-                            <field name="anh" widget="image"/>
+
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ho_va_ten" readonly="1"/>
+                            </h1>
+                        </div>
+
+                        <group string="Thông tin nhân viên" col="4">
+
+                            <group>
+
+                                <field name="ma_dinh_danh"/>
+                                <field name="ho_ten_dem"/>
+                                <field name="ten"/>
+                                <field name="ho_va_ten" readonly="1"/>
+
+                            </group>
+
+                            <group>
+
+                                <field name="ngay_sinh"/>
+                                <field name="tuoi" readonly="1"/>
+                                <field name="so_nguoi_bang_tuoi" readonly="1"/>
+
+                            </group>
+
+                            <group>
+
+                                <field name="que_quan"/>
+                                <field name="email"/>
+
+                            </group>
+
+                            <group>
+
+                                <field name="anh" widget="image"/>
+
+                            </group>
+
                         </group>
+
+                        <!-- KPI ERP -->
+
+                        <group string="Thống kê ERP">
+
+                            <group>
+
+                                <field name="tong_khach_hang" readonly="1"/>
+                                <field name="tong_cong_viec" readonly="1"/>
+                                <field name="cong_viec_hoan_thanh" readonly="1"/>
+
+                            </group>
+
+                        </group>
+
                         <notebook>
-                            <page string="Danh sách lịch sử công tác">
+
+                            <page string="Lịch sử công tác">
+
                                 <field name="lich_su_cong_tac_ids"/>
+
                             </page>
-                            <page string="Danh sách chứng chỉ bằng cấp">
+
+                            <page string="Chứng chỉ">
+
                                 <field name="danh_sach_chung_chi_bang_cap_ids"/>
+
                             </page>
+
+                            <page string="Khách hàng phụ trách">
+
+                                <field name="khach_hang_ids" readonly="1">
+
+                                    <tree>
+
+                                        <field name="ma_khach_hang"/>
+                                        <field name="ten_khach_hang"/>
+                                        <field name="trang_thai"/>
+
+                                    </tree>
+
+                                </field>
+
+                            </page>
+
+                            <page string="Công việc">
+
+                                <field name="cong_viec_ids" readonly="1">
+
+                                    <tree>
+
+                                        <field name="ten_cong_viec"/>
+                                        <field name="khach_hang_id"/>
+                                        <field name="trang_thai"/>
+
+                                    </tree>
+
+                                </field>
+
+                            </page>
+
                         </notebook>
+
                     </sheet>
-                    
+
                 </form>
+
             </field>
         </record>
+
+        <!-- ================= TREE ================= -->
 
         <record id="view_nhan_vien_tree" model="ir.ui.view">
-            <field name="name">nhan_vien</field>
+            <field name="name">nhan_vien.tree</field>
             <field name="model">nhan_vien</field>
             <field name="arch" type="xml">
+
                 <tree>
+
                     <field name="ma_dinh_danh"/>
-                    <field name="ho_ten_dem"/>
-                    <field name="ten"/>
                     <field name="ho_va_ten"/>
-                    <field name="ngay_sinh"/>
                     <field name="tuoi"/>
-                    <field name="so_nguoi_bang_tuoi"/>
-                    <field name="que_quan"/>
                     <field name="email"/>
+
+                    <field name="tong_khach_hang"/>
+                    <field name="tong_cong_viec"/>
+                    <field name="cong_viec_hoan_thanh"/>
+
                 </tree>
+
             </field>
         </record>
+
+        <!-- ================= SEARCH ================= -->
 
         <record model="ir.ui.view" id="nhan_vien_search">
+
             <field name="model">nhan_vien</field>
+
             <field name="arch" type="xml">
+
                 <search>
+
                     <field name="ma_dinh_danh"/>
                     <field name="ho_va_ten"/>
-                    <field name="ngay_sinh"/>
-                    <field name="tuoi"/>
-                    <field name="que_quan"/>
                     <field name="email"/>
+
+                    <field name="tuoi"/>
+
                 </search>
+
             </field>
+
         </record>
 
+        <!-- ================= ACTION ================= -->
+
         <record id="action_nhan_vien" model="ir.actions.act_window">
+
             <field name="name">Nhân viên</field>
+
             <field name="res_model">nhan_vien</field>
+
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref = "nhan_vien_search"/>
+
+            <field name="search_view_id" ref="nhan_vien_search"/>
+
         </record>
+
     </data>
+
 </odoo>
-        
-    

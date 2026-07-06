@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================= Tree ================= -->
+
+    <record id="view_khach_hang_tree" model="ir.ui.view">
+        <field name="name">khach.hang.tree</field>
+        <field name="model">khach_hang</field>
+        <field name="arch" type="xml">
+
+            <tree>
+
+                <field name="ma_khach_hang"/>
+                <field name="ten_khach_hang"/>
+                <field name="so_dien_thoai"/>
+                <field name="email"/>
+                <field name="nhan_vien_phu_trach"/>
+                <field name="trang_thai"/>
+                <field name="so_cong_viec"/>
+
+            </tree>
+
+        </field>
+    </record>
+
+    <!-- ================= Form ================= -->
+
+    <record id="view_khach_hang_form" model="ir.ui.view">
+        <field name="name">khach.hang.form</field>
+        <field name="model">khach_hang</field>
+        <field name="arch" type="xml">
+
+            <form>
+
+                <header>
+
+                    <button
+                        name="tao_cong_viec"
+                        string="Tạo công việc"
+                        type="object"
+                        class="btn-primary"/>
+
+                    <field
+                        name="trang_thai"
+                        widget="statusbar"/>
+
+                </header>
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ten_khach_hang"/>
+                        </h1>
+                    </div>
+
+                    <group>
+
+                        <group>
+
+                            <field name="ma_khach_hang"/>
+                            <field name="so_dien_thoai"/>
+                            <field name="email"/>
+
+                        </group>
+
+                        <group>
+
+                            <field name="dia_chi"/>
+                            <field name="nhan_vien_phu_trach"/>
+                            <field name="so_cong_viec" readonly="1"/>
+
+                        </group>
+
+                    </group>
+
+                    <notebook>
+
+                        <page string="Công việc">
+
+                            <field name="cong_viec_ids" readonly="1">
+
+                                <tree>
+
+                                    <field name="ten_cong_viec"/>
+                                    <field name="nhan_vien_id"/>
+                                    <field name="trang_thai"/>
+
+                                </tree>
+
+                            </field>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+    <!-- ================= Action ================= -->
+
+    <record id="action_khach_hang" model="ir.actions.act_window">
+        <field name="name">Khách hàng</field>
+        <field name="res_model">khach_hang</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ================= Menu ================= -->
+
+    <menuitem
+            id="menu_khach_hang_root"
+            name="Quản lý khách hàng"/>
+
+    <menuitem
+            id="menu_khach_hang"
+            name="Khách hàng"
+            parent="menu_khach_hang_root"
+            action="action_khach_hang"/>
+
+</odoo>

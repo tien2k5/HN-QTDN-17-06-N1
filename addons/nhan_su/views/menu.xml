@@ -1,53 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
+        <!-- ================= ROOT ================= -->
+
         <menuitem
             id="menu_root"
-            name="QLNS"
-            sequence="0"/>
-          
-        <menuitem name="Quản lý nhân viên" 
-            id="menu_nhan_vien" 
-            parent="menu_root" 
-            sequence="1"
+            name="ERP Quản lý doanh nghiệp"
+            sequence="1"/>
+
+        <!-- ================= NHÂN SỰ ================= -->
+
+        <menuitem
+            id="menu_hr_root"
+            name="Nhân sự"
+            parent="menu_root"
+            sequence="1"/>
+
+        <menuitem
+            id="menu_nhan_vien"
+            name="Nhân viên"
+            parent="menu_hr_root"
             action="action_nhan_vien"
-        />
+            sequence="1"/>
 
-        <menuitem name="Danh mục chung" 
-            id="menu_danh_muc_chung" 
-            parent="menu_root" 
-            sequence="1"
-        />
+        <menuitem
+            id="menu_danh_muc_chung"
+            name="Danh mục"
+            parent="menu_hr_root"
+            sequence="2"/>
 
-        <menuitem name="Danh mục đơn vị" 
-            id="menu_don_vi" 
-            parent="menu_danh_muc_chung" 
-            sequence="1"
+        <menuitem
+            id="menu_don_vi"
+            name="Đơn vị"
+            parent="menu_danh_muc_chung"
             action="action_don_vi"
-        />
-        <menuitem name="Danh mục chức vụ" 
-            id="menu_chuc_vu" 
-            parent="menu_danh_muc_chung" 
-            sequence="2"
+            sequence="1"/>
+
+        <menuitem
+            id="menu_chuc_vu"
+            name="Chức vụ"
+            parent="menu_danh_muc_chung"
             action="action_chuc_vu"
-        />
-        <menuitem name="Danh mục chứng chỉ, bằng cấp" 
-            id="menu_chung_chi_bang_cap" 
-            parent="menu_danh_muc_chung" 
-            sequence="3"
+            sequence="2"/>
+
+        <menuitem
+            id="menu_chung_chi_bang_cap"
+            name="Chứng chỉ"
+            parent="menu_danh_muc_chung"
             action="action_chung_chi_bang_cap"
-        />
-        <menuitem name="Lịch sử công tác" 
-            id="menu_lich_su_cong_tac" 
-            parent="menu_root" 
-            sequence="4"
+            sequence="3"/>
+
+        <menuitem
+            id="menu_lich_su_cong_tac"
+            name="Lịch sử công tác"
+            parent="menu_hr_root"
             action="action_lich_su_cong_tac"
-        />
-        <menuitem name="Danh sách chứng chỉ, bằng cấp" 
-            id="menu_danh_sach_chung_chi_bang_cap" 
-            parent="menu_root" 
-            sequence="4"
+            sequence="3"/>
+
+        <menuitem
+            id="menu_danh_sach_chung_chi_bang_cap"
+            name="Danh sách chứng chỉ"
+            parent="menu_hr_root"
             action="action_danh_sach_chung_chi_bang_cap"
-        />
+            sequence="4"/>
+
+        <!-- ================= LIÊN KẾT ERP ================= -->
+
+        <menuitem
+            id="menu_open_customer"
+            name="Khách hàng"
+            parent="menu_root"
+            action="quan_ly_khach_hang.action_khach_hang"
+            sequence="20"/>
+
+        <menuitem
+            id="menu_open_task"
+            name="Công việc"
+            parent="menu_root"
+            action="quan_ly_cong_viec.action_cong_viec"
+            sequence="21"/>
+
     </data>
 </odoo>
